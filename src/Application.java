@@ -29,7 +29,7 @@ public class Application implements ActionListener {
     private JLabel resultsLabel;
 
     // the main method for setting up the GUI
-    public void run() {
+    public Application() {
 
         JFrame frame = new JFrame("My Calculator");
 

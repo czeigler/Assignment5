@@ -7,12 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created with IntelliJ IDEA.
  * User: chris
  * Date: 3/8/13
- * Time: 4:02 PM
- * To change this template use File | Settings | File Templates.
+ * Time: 4:01 PM
+ * CIS 611 Assignment #5
+ *
+ * The GUI for the calculator application
  */
+
 public class Application implements ActionListener {
 
     public static final String BUTTON_TEXT_ADD = "Add";
@@ -26,6 +28,7 @@ public class Application implements ActionListener {
     private JLabel num2Label;
     private JLabel resultsLabel;
 
+    // the main method for setting up the GUI
     public void run() {
 
         JFrame frame = new JFrame("My Calculator");
@@ -35,16 +38,20 @@ public class Application implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        JPanel buttonsPanel = doTheLayout();
+        doTheLayout(frame);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+
+    private void doTheLayout(JFrame frame) {
+        JPanel buttonsPanel = getButtonsPanel();
         JPanel fieldsPanel = getFieldsPanel();
         BorderLayout calculatorLayout = new BorderLayout();
         frame.setLayout(calculatorLayout);
 
         frame.add(fieldsPanel, BorderLayout.NORTH);
         frame.add(buttonsPanel, BorderLayout.CENTER);
-        frame.pack();
-        frame.setVisible(true);
-
     }
 
     private JPanel getFieldsPanel() {
@@ -76,7 +83,7 @@ public class Application implements ActionListener {
 
 
     // create the buttons for the calculator
-    private JPanel doTheLayout() {
+    private JPanel getButtonsPanel() {
         JPanel numbersPanel = new JPanel();
         GridLayout gridLayout = new GridLayout(1, 4);
         numbersPanel.setLayout(gridLayout);
@@ -92,6 +99,7 @@ public class Application implements ActionListener {
 
     private void addCalculatorButton(JPanel numbersPanel, String buttonText) {
         JButton button = new JButton(buttonText);
+        button.setMnemonic(buttonText.charAt(0));
         button.addActionListener(this);
         numbersPanel.add(button);
     }
